@@ -1,0 +1,11 @@
+{
+  "name": "@sitic-grid/demo",
+  "version": "1.0.0",
+  "description": "Demo pages to validate UMD bundles",
+  "private": true,
+  "scripts": {
+    "build": "echo \"Demo package - no build needed\"",
+    "dev": "echo \"Demo package - open HTML files in browser\"",
+    "clean": "echo \"Demo package - nothing to clean\""
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@sitic-grid/card",
+  "version": "1.0.0",
+  "description": "Card component for sitic-grid library",
+  "main": "dist/card.js",
+  "types": "dist/card.d.ts",
+  "scripts": {
+    "build": "rspack build",
+    "dev": "rspack build --watch",
+    "clean": "rimraf dist"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
+  }
+}

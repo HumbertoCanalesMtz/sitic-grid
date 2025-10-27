@@ -1,0 +1,19 @@
+{
+  "name": "@sitic-grid/button",
+  "version": "1.0.0",
+  "description": "Button component for sitic-grid library",
+  "main": "dist/button.js",
+  "types": "dist/button.d.ts",
+  "scripts": {
+    "build": "rspack build",
+    "dev": "rspack build --watch",
+    "clean": "rimraf dist"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
+  }
+}

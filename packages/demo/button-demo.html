@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiticGrid Demo - Button Component</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 25px;
+            border: 1px solid #e1e5e9;
+            border-radius: 12px;
+            background: #fafafa;
+        }
+        .demo-section h2 {
+            margin-top: 0;
+            color: #555;
+            font-size: 1.5rem;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 15px 0;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            margin: 10px 0;
+            border: 1px solid #4a5568;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e1e5e9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .demo-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 SiticGrid Button Component Demo</h1>
+        <p class="text-center text-gray-600 mb-8">
+            Interactive demonstration of the SiticGridButton component loaded via UMD bundle
+        </p>
+        
+        <!-- Status Check -->
+        <div class="demo-section">
+            <h2>📦 Component Loading Status</h2>
+            <div id="status-check" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+        </div>
+
+        <!-- Basic Variants -->
+        <div class="demo-section">
+            <h2>🎨 Button Variants</h2>
+            <div class="demo-content">
+                <div id="variants-demo" class="button-group"></div>
+                <div class="code-block">const button = React.createElement(SiticGridButton, { 
+    variant: 'primary', 
+    text: 'Primary Button',
+    onClick: () => alert('Clicked!')
+});</div>
+            </div>
+        </div>
+
+        <!-- Sizes -->
+        <div class="demo-section">
+            <h2>📏 Button Sizes</h2>
+            <div class="demo-content">
+                <div id="sizes-demo" class="button-group"></div>
+                <div class="code-block">// Available sizes: 'small', 'medium', 'large'
+React.createElement(SiticGridButton, { size: 'large', text: 'Large Button' });</div>
+            </div>
+        </div>
+
+        <!-- States -->
+        <div class="demo-section">
+            <h2>⚡ Button States</h2>
+            <div class="demo-content">
+                <div id="states-demo" class="button-group"></div>
+                <div class="code-block">// Loading and disabled states
+React.createElement(SiticGridButton, { loading: true, text: 'Loading...' });
+React.createElement(SiticGridButton, { disabled: true, text: 'Disabled' });</div>
+            </div>
+        </div>
+
+        <!-- Special Features -->
+        <div class="demo-section">
+            <h2>✨ Special Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Full Width</h3>
+                    <div id="fullwidth-demo"></div>
+                </div>
+                <div class="feature-card">
+                    <h3>Rounded</h3>
+                    <div id="rounded-demo"></div>
+                </div>
+                <div class="feature-card">
+                    <h3>With Icons</h3>
+                    <div id="icons-demo"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo -->
+        <div class="demo-section">
+            <h2>🎮 Interactive Playground</h2>
+            <div class="demo-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-3">Controls</h4>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium">Variant:</label>
+                                <select id="variant-select" class="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2">
+                                    <option value="primary">Primary</option>
+                                    <option value="secondary">Secondary</option>
+                                    <option value="outline">Outline</option>
+                                    <option value="danger">Danger</option>
+                                    <option value="success">Success</option>
+                                    <option value="warning">Warning</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium">Size:</label>
+                                <select id="size-select" class="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2">
+                                    <option value="small">Small</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="large">Large</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium">Text:</label>
+                                <input id="text-input" type="text" value="Custom Button" class="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input id="loading-check" type="checkbox" class="mr-2">
+                                    Loading State
+                                </label>
+                                <label class="flex items-center">
+                                    <input id="disabled-check" type="checkbox" class="mr-2">
+                                    Disabled
+                                </label>
+                                <label class="flex items-center">
+                                    <input id="fullwidth-check" type="checkbox" class="mr-2">
+                                    Full Width
+                                </label>
+                                <label class="flex items-center">
+                                    <input id="rounded-check" type="checkbox" class="mr-2">
+                                    Rounded
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-3">Preview</h4>
+                        <div id="playground-demo" class="p-4 border border-gray-300 rounded-lg bg-gray-50"></div>
+                        <h4 class="font-semibold mt-4 mb-2">Generated Code:</h4>
+                        <div id="generated-code" class="code-block text-xs"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load React and ReactDOM from CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Load UMD bundle -->
+    <script src="../button/dist/button.js"></script>
+
+    <script>
+        const { createElement: h, useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+
+        // Status check
+        function renderStatusCheck() {
+            const statusItems = [
+                { name: 'React', loaded: typeof React !== 'undefined' },
+                { name: 'ReactDOM', loaded: typeof ReactDOM !== 'undefined' },
+                { name: 'SiticGridButton', loaded: typeof SiticGridButton !== 'undefined' }
+            ];
+
+            const statusElements = statusItems.map(item => 
+                h('div', { 
+                    key: item.name,
+                    className: 'bg-white p-4 rounded-lg border text-center'
+                }, [
+                    h('div', { className: 'text-lg font-semibold mb-2' }, item.name),
+                    h('span', { 
+                        className: `status ${item.loaded ? 'success' : 'error'}`
+                    }, item.loaded ? '✓ Loaded' : '✗ Missing')
+                ])
+            );
+
+            createRoot(document.getElementById('status-check')).render(
+                h('div', { className: 'contents' }, statusElements)
+            );
+        }
+
+        // Basic demos
+        function renderBasicDemos() {
+            if (typeof SiticGridButton === 'undefined') return;
+
+            // Variants
+            const variants = ['primary', 'secondary', 'outline', 'danger', 'success', 'warning'];
+            const variantButtons = variants.map(variant =>
+                h(SiticGridButton, {
+                    key: variant,
+                    variant: variant,
+                    text: variant.charAt(0).toUpperCase() + variant.slice(1),
+                    onClick: () => alert(`${variant} button clicked!`)
+                })
+            );
+            createRoot(document.getElementById('variants-demo')).render(
+                h('div', { className: 'contents' }, variantButtons)
+            );
+
+            // Sizes
+            const sizes = ['small', 'medium', 'large'];
+            const sizeButtons = sizes.map(size =>
+                h(SiticGridButton, {
+                    key: size,
+                    size: size,
+                    text: `${size.charAt(0).toUpperCase() + size.slice(1)} Button`,
+                    onClick: () => alert(`${size} button clicked!`)
+                })
+            );
+            createRoot(document.getElementById('sizes-demo')).render(
+                h('div', { className: 'contents' }, sizeButtons)
+            );
+
+            // States
+            const stateButtons = [
+                h(SiticGridButton, {
+                    key: 'normal',
+                    text: 'Normal',
+                    onClick: () => alert('Normal button clicked!')
+                }),
+                h(SiticGridButton, {
+                    key: 'loading',
+                    loading: true,
+                    text: 'Loading...'
+                }),
+                h(SiticGridButton, {
+                    key: 'disabled',
+                    disabled: true,
+                    text: 'Disabled'
+                })
+            ];
+            createRoot(document.getElementById('states-demo')).render(
+                h('div', { className: 'contents' }, stateButtons)
+            );
+
+            // Special features
+            createRoot(document.getElementById('fullwidth-demo')).render(
+                h(SiticGridButton, {
+                    fullWidth: true,
+                    text: 'Full Width Button',
+                    onClick: () => alert('Full width button clicked!')
+                })
+            );
+
+            createRoot(document.getElementById('rounded-demo')).render(
+                h(SiticGridButton, {
+                    rounded: true,
+                    text: 'Rounded Button',
+                    onClick: () => alert('Rounded button clicked!')
+                })
+            );
+
+            createRoot(document.getElementById('icons-demo')).render(
+                h('div', { className: 'space-y-2' }, [
+                    h(SiticGridButton, {
+                        key: 'with-icon',
+                        text: 'With Icon',
+                        icon: h('span', null, '🚀'),
+                        onClick: () => alert('Icon button clicked!')
+                    }),
+                    h(SiticGridButton, {
+                        key: 'icon-after',
+                        text: 'Icon After',
+                        iconAfter: h('span', null, '➡️'),
+                        variant: 'outline',
+                        onClick: () => alert('Icon after button clicked!')
+                    })
+                ])
+            );
+        }
+
+        // Interactive playground
+        function renderPlayground() {
+            if (typeof SiticGridButton === 'undefined') return;
+
+            function PlaygroundComponent() {
+                const [config, setConfig] = useState({
+                    variant: 'primary',
+                    size: 'medium',
+                    text: 'Custom Button',
+                    loading: false,
+                    disabled: false,
+                    fullWidth: false,
+                    rounded: false
+                });
+
+                const updatePlayground = () => {
+                    const newConfig = {
+                        variant: document.getElementById('variant-select').value,
+                        size: document.getElementById('size-select').value,
+                        text: document.getElementById('text-input').value,
+                        loading: document.getElementById('loading-check').checked,
+                        disabled: document.getElementById('disabled-check').checked,
+                        fullWidth: document.getElementById('fullwidth-check').checked,
+                        rounded: document.getElementById('rounded-check').checked
+                    };
+                    setConfig(newConfig);
+                };
+
+                // Update code display
+                useEffect(() => {
+                    const code = `React.createElement(SiticGridButton, {
+    variant: '${config.variant}',
+    size: '${config.size}',
+    text: '${config.text}',${config.loading ? '\n    loading: true,' : ''}${config.disabled ? '\n    disabled: true,' : ''}${config.fullWidth ? '\n    fullWidth: true,' : ''}${config.rounded ? '\n    rounded: true,' : ''}
+    onClick: () => alert('Button clicked!')
+});`;
+                    document.getElementById('generated-code').textContent = code;
+                }, [config]);
+
+                return h(SiticGridButton, {
+                    ...config,
+                    onClick: () => alert('Playground button clicked!')
+                });
+            }
+
+            createRoot(document.getElementById('playground-demo')).render(h(PlaygroundComponent));
+
+            // Add event listeners
+            ['variant-select', 'size-select', 'text-input', 'loading-check', 'disabled-check', 'fullwidth-check', 'rounded-check'].forEach(id => {
+                document.getElementById(id).addEventListener('change', () => {
+                    createRoot(document.getElementById('playground-demo')).render(h(PlaygroundComponent));
+                });
+                document.getElementById(id).addEventListener('input', () => {
+                    createRoot(document.getElementById('playground-demo')).render(h(PlaygroundComponent));
+                });
+            });
+        }
+
+        // Initialize demos
+        document.addEventListener('DOMContentLoaded', () => {
+            renderStatusCheck();
+            renderBasicDemos();
+            renderPlayground();
+        });
+    </script>
+</body>
+</html>
