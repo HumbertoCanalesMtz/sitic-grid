@@ -75,11 +75,12 @@
 <body>
     <div class="container">
         <h1>Siticomponents Demo - All Components</h1>
-        <p>This page demonstrates all components working together, loaded via UMD from local files.</p>
+        <p>This page demonstrates all components working together, loaded via UMD from local files. Includes Button, Card, and Enterprise Data Grid components.</p>
         
         <div class="nav-links">
             <a href="button-demo.html">Button Demo</a>
             <a href="card-demo.html">Card Demo</a>
+            <a href="enterprise-data-grid-demo.html">Enterprise Data Grid Demo</a>
             <a href="index.html">All Components</a>
         </div>
 
@@ -101,6 +102,7 @@
     <!-- Load all UMD bundles -->
     <script src="../button/dist/button.js"></script>
     <script src="../card/dist/card.js"></script>
+    <script src="../enterprise-data-grid/dist/enterprise-data-grid.js"></script>
 
     <script>
         // Check if everything loaded correctly
@@ -108,11 +110,13 @@
             'React: ' + (typeof React !== 'undefined' ? '✓ Loaded' : '✗ Missing') + '\n' +
             'ReactDOM: ' + (typeof ReactDOM !== 'undefined' ? '✓ Loaded' : '✗ Missing') + '\n' +
             'SiticGridButton: ' + (typeof SiticGridButton !== 'undefined' ? '✓ Loaded' : '✗ Missing') + '\n' +
-            'SiticGridCard: ' + (typeof SiticGridCard !== 'undefined' ? '✓ Loaded' : '✗ Missing');
+            'SiticGridCard: ' + (typeof SiticGridCard !== 'undefined' ? '✓ Loaded' : '✗ Missing') + '\n' +
+            'SiticGridEnterpriseDataGrid: ' + (typeof SiticGridEnterpriseDataGrid !== 'undefined' ? '✓ Loaded' : '✗ Missing');
 
         // Test all components working together
         if (typeof React !== 'undefined' && typeof ReactDOM !== 'undefined' && 
-            typeof SiticGridButton !== 'undefined' && typeof SiticGridCard !== 'undefined') {
+            typeof SiticGridButton !== 'undefined' && typeof SiticGridCard !== 'undefined' &&
+            typeof SiticGridEnterpriseDataGrid !== 'undefined') {
             
             const { createElement: h, useState } = React;
             const { createRoot } = ReactDOM;
