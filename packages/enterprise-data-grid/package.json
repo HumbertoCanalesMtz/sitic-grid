@@ -1,0 +1,34 @@
+{
+  "name": "@sitic-grid/enterprise-data-grid",
+  "version": "1.0.0",
+  "description": "Enterprise data grid component for SITIC Grid Library",
+  "main": "dist/enterprise-data-grid.js",
+  "module": "dist/enterprise-data-grid.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rspack build",
+    "dev": "rspack build --watch"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@rspack/cli": "^0.4.5",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "data-grid",
+    "table",
+    "enterprise",
+    "sitic"
+  ],
+  "license": "MIT"
+}
