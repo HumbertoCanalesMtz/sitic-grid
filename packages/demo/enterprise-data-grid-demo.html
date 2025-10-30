@@ -119,10 +119,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>🗂️ Enterprise Data Grid Demo</h1>
-        <p style="text-align: center; color: #666; font-size: 1.1rem; margin-bottom: 30px;">
-            Advanced data grid component with sorting, filtering, pagination, and export functionality
-        </p>
+    <h1>Enterprise Data Grid Demo</h1>
         
         <div class="nav-links">
             <a href="button-demo.html">Button Demo</a>
@@ -132,7 +129,7 @@
         </div>
 
         <div class="demo-section">
-            <h2>📊 Component Status</h2>
+            <h2>Component Status</h2>
             <div class="status-grid">
                 <div class="status-item">
                     <h3>Component</h3>
@@ -154,7 +151,7 @@
         </div>
 
         <div class="demo-section">
-            <h2>🚀 Interactive Enterprise Data Grid</h2>
+            <h2>Interactive Enterprise Data Grid</h2>
             <div class="grid-container">
                 <div id="data-grid-demo" class="loading">
                     Loading Enterprise Data Grid...
@@ -162,15 +159,7 @@
             </div>
         </div>
 
-        <div class="demo-section">
-            <h2>📋 Sample Data Preview</h2>
-            <pre id="data-preview">Loading sample data...</pre>
-        </div>
-
-        <div class="demo-section">
-            <h2>⚙️ Component Configuration</h2>
-            <pre id="config-info">Loading configuration...</pre>
-        </div>
+        
     </div>
 
     <!-- Load React and ReactDOM from CDN -->
@@ -321,48 +310,17 @@
         // Update status indicators
         function updateStatus() {
             document.getElementById('component-status').textContent = 
-                typeof SiticGridEnterpriseDataGrid !== 'undefined' ? '✅ Loaded' : '❌ Missing';
+                typeof SiticGridEnterpriseDataGrid !== 'undefined' ? 'Loaded' : 'Missing';
             document.getElementById('react-status').textContent = 
-                typeof React !== 'undefined' ? '✅ Loaded' : '❌ Missing';
+                typeof React !== 'undefined' ? 'Loaded' : 'Missing';
             document.getElementById('total-records').textContent = sampleData.length;
         }
 
-        // Show sample data preview
-        function showDataPreview() {
-            const preview = sampleData.slice(0, 3).map(item => ({
-                id: item.id,
-                name: item.name,
-                department: item.department,
-                salary: item.salary,
-                active: item.active
-            }));
-            document.getElementById('data-preview').textContent = 
-                JSON.stringify(preview, null, 2) + '\n\n... and ' + (sampleData.length - 3) + ' more records';
-        }
-
-        // Show configuration
-        function showConfiguration() {
-            const config = {
-                features: {
-                    sorting: true,
-                    filtering: true,
-                    pagination: true,
-                    selection: true,
-                    export: true,
-                    search: true
-                },
-                columns: columnDefinitions.length,
-                records: sampleData.length,
-                pageSize: 5
-            };
-            document.getElementById('config-info').textContent = JSON.stringify(config, null, 2);
-        }
+        // removed: sample data preview and component configuration helpers
 
         // Initialize the demo
         function initializeDemo() {
             updateStatus();
-            showDataPreview();
-            showConfiguration();
 
             // Check if everything loaded correctly
             if (typeof React !== 'undefined' && 
@@ -408,7 +366,7 @@
                         // Simple visual feedback
                         const el = document.getElementById('component-status');
                         if (el) {
-                          el.textContent = '🔄 Refrescado';
+                                                    el.textContent = 'Refrescado';
                           setTimeout(updateStatus, 1000);
                         }
                     };
@@ -430,7 +388,7 @@
                 gridRoot.render(h(DataGridDemo));
             } else {
                 document.getElementById('data-grid-demo').innerHTML = 
-                    '<div class="error">❌ Error: Required components not loaded. Check console for details.</div>';
+                    '<div class="error">Error: Required components not loaded. Check console for details.</div>';
             }
         }
 

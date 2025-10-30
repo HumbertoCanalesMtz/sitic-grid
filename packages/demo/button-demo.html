@@ -94,20 +94,20 @@
 </head>
 <body>
     <div class="container">
-        <h1>🚀 SiticGrid Button Component Demo</h1>
+    <h1>SiticGrid Button Component Demo</h1>
         <p class="text-center text-gray-600 mb-8">
             Interactive demonstration of the SiticGridButton component loaded via UMD bundle
         </p>
         
         <!-- Status Check -->
         <div class="demo-section">
-            <h2>📦 Component Loading Status</h2>
+            <h2>Component Loading Status</h2>
             <div id="status-check" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
         </div>
 
         <!-- Basic Variants -->
         <div class="demo-section">
-            <h2>🎨 Button Variants</h2>
+            <h2>Button Variants</h2>
             <div class="demo-content">
                 <div id="variants-demo" class="button-group"></div>
                 <div class="code-block">const button = React.createElement(SiticGridButton, { 
@@ -120,7 +120,7 @@
 
         <!-- Sizes -->
         <div class="demo-section">
-            <h2>📏 Button Sizes</h2>
+            <h2>Button Sizes</h2>
             <div class="demo-content">
                 <div id="sizes-demo" class="button-group"></div>
                 <div class="code-block">// Available sizes: 'small', 'medium', 'large'
@@ -130,7 +130,7 @@ React.createElement(SiticGridButton, { size: 'large', text: 'Large Button' });</
 
         <!-- States -->
         <div class="demo-section">
-            <h2>⚡ Button States</h2>
+            <h2>Button States</h2>
             <div class="demo-content">
                 <div id="states-demo" class="button-group"></div>
                 <div class="code-block">// Loading and disabled states
@@ -141,7 +141,7 @@ React.createElement(SiticGridButton, { disabled: true, text: 'Disabled' });</div
 
         <!-- Special Features -->
         <div class="demo-section">
-            <h2>✨ Special Features</h2>
+            <h2>Special Features</h2>
             <div class="feature-grid">
                 <div class="feature-card">
                     <h3>Full Width</h3>
@@ -160,7 +160,7 @@ React.createElement(SiticGridButton, { disabled: true, text: 'Disabled' });</div
 
         <!-- Interactive Demo -->
         <div class="demo-section">
-            <h2>🎮 Interactive Playground</h2>
+            <h2>Interactive Playground</h2>
             <div class="demo-content">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -247,7 +247,7 @@ React.createElement(SiticGridButton, { disabled: true, text: 'Disabled' });</div
                     h('div', { className: 'text-lg font-semibold mb-2' }, item.name),
                     h('span', { 
                         className: `status ${item.loaded ? 'success' : 'error'}`
-                    }, item.loaded ? '✓ Loaded' : '✗ Missing')
+                    }, item.loaded ? 'Loaded' : 'Missing')
                 ])
             );
 
@@ -332,13 +332,13 @@ React.createElement(SiticGridButton, { disabled: true, text: 'Disabled' });</div
                     h(SiticGridButton, {
                         key: 'with-icon',
                         text: 'With Icon',
-                        icon: h('span', null, '🚀'),
+                        icon: h('span', null, '*'),
                         onClick: () => alert('Icon button clicked!')
                     }),
                     h(SiticGridButton, {
                         key: 'icon-after',
                         text: 'Icon After',
-                        iconAfter: h('span', null, '➡️'),
+                        iconAfter: h('span', null, '->'),
                         variant: 'outline',
                         onClick: () => alert('Icon after button clicked!')
                     })

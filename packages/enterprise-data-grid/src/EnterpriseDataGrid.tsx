@@ -276,17 +276,48 @@ const DropdownMenuLabel = ({ children }: { children: React.ReactNode }) => {
   return <div className="px-2 py-1.5 text-sm font-semibold">{children}</div>;
 };
 
+// Simple Tooltip with internal hover/focus state so content isn't always visible
+const TooltipContext = React.createContext<{
+  open: boolean;
+  setOpen: (o: boolean) => void;
+} | null>(null);
+
 const Tooltip = ({ children }: { children: React.ReactNode }) => {
-  return <div className="relative inline-block">{children}</div>;
+  const [open, setOpen] = useState(false);
+  return (
+    <TooltipContext.Provider value={{ open, setOpen }}>
+      <div
+        className="relative inline-block"
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+      >
+        {children}
+      </div>
+    </TooltipContext.Provider>
+  );
 };
 
 const TooltipTrigger = ({ children }: { children: React.ReactNode }) => {
-  return <div className="inline-block">{children}</div>;
+  const ctx = React.useContext(TooltipContext);
+  return (
+    <div
+      className="inline-block"
+      onFocus={() => ctx?.setOpen(true)}
+      onBlur={() => ctx?.setOpen(false)}
+    >
+      {children}
+    </div>
+  );
 };
 
 const TooltipContent = ({ children }: { children: React.ReactNode }) => {
+  const ctx = React.useContext(TooltipContext);
+  if (!ctx?.open) return null;
   return (
-    <div className="absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2 rounded-md bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md">
+    <div
+      className="absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2 rounded-md bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md"
+      style={{ zIndex: 60 }}
+    >
       {children}
     </div>
   );
@@ -715,7 +746,7 @@ export const EnterpriseDataGrid: React.FC<EnterpriseDataGridProps> = ({
       {/* Table Container */}
       <div className="flex-1 overflow-auto">
         <table className="w-full border-collapse" style={{ minWidth: 'max-content' }}>
-          <thead className="sticky top-0 z-20 bg-[#1a2332] dark:bg-[#0f1a28]">
+          <thead className="sticky top-0 z-40 bg-[#1a2332] dark:bg-[#0f1a28]">
             <tr>
               {visibleColumnsArray.map((column) => (
                 <th
@@ -726,7 +757,7 @@ export const EnterpriseDataGrid: React.FC<EnterpriseDataGridProps> = ({
                   onDrop={(e) => handleDrop(e, column.key)}
                   className={cn(
                     'group relative border-b-2 border-border px-3 py-1.5 text-left text-xs font-medium uppercase tracking-wider text-gray-300 dark:text-gray-400',
-                    column.fixed && 'sticky z-30 shadow-[2px_0_4px_rgba(0,0,0,0.05)]',
+                    column.fixed && 'sticky z-50 shadow-[2px_0_4px_rgba(0,0,0,0.05)]',
                     column.key === 'actions' && 'left-0 bg-[#1a2332] dark:bg-[#0f1a28]',
                     column.key === 'id' && 'left-[80px] border-r-2 bg-[#1a2332] dark:bg-[#0f1a28]',
                     draggedColumn === column.key && 'opacity-50',
@@ -813,7 +844,7 @@ export const EnterpriseDataGrid: React.FC<EnterpriseDataGridProps> = ({
                       key={column.key}
                       className={cn(
                         'px-3 py-1.5 text-sm',
-                        column.fixed && 'sticky z-10',
+                        column.fixed && 'sticky z-40',
                         column.key === 'actions' && 'left-0',
                         column.key === 'id' && 'left-[80px] border-r-2',
                         column.fixed && (rowIndex % 2 === 0 ? 'bg-card' : 'bg-neutral-100 dark:bg-neutral-800'),
@@ -876,14 +907,14 @@ export const EnterpriseDataGrid: React.FC<EnterpriseDataGridProps> = ({
               );
             })}
           </tbody>
-          <tfoot className="sticky bottom-0 z-20 bg-card shadow-[0_-2px_4px_rgba(0,0,0,0.05)]">
+          <tfoot className="sticky bottom-0 z-50 bg-card shadow-[0_-2px_4px_rgba(0,0,0,0.05)]">
             <tr className="border-t-2 border-border">
               {visibleColumnsArray.map((column, index) => (
                 <td
                   key={column.key}
                   className={cn(
                     'px-3 py-1.5 text-sm font-semibold',
-                    column.fixed && 'sticky z-30 bg-card shadow-[2px_0_4px_rgba(0,0,0,0.05)]',
+                    column.fixed && 'sticky z-50 bg-card shadow-[2px_0_4px_rgba(0,0,0,0.05)]',
                     column.key === 'actions' && 'left-0',
                     column.key === 'id' && 'left-[80px] border-r-2',
                     column.type === 'currency' && 'text-right tabular-nums',
