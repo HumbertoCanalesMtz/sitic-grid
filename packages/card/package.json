@@ -5,7 +5,8 @@
   "main": "dist/card.js",
   "types": "dist/card.d.ts",
   "scripts": {
-    "build": "rspack build",
+    "build:css": "tailwindcss -c tailwind.config.cjs -i ./src/styles.css -o ./dist/card.css --minify",
+    "build": "rimraf dist && rspack build && npm run build:css",
     "dev": "rspack build --watch",
     "clean": "rimraf dist"
   },

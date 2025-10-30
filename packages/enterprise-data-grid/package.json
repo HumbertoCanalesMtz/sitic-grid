@@ -9,8 +9,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "rspack build",
-    "dev": "rspack build --watch"
+    "build:css": "tailwindcss -c tailwind.config.cjs -i ./src/styles.css -o ./dist/enterprise-data-grid.css --minify",
+    "build": "rimraf dist && rspack build && npm run build:css",
+    "dev": "rspack build --watch",
+    "clean": "rimraf dist"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
