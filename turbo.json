@@ -4,7 +4,14 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"],
-      "inputs": ["src/**", "rspack.config.js", "tsconfig.json", "package.json"]
+      "inputs": [
+        "src/**",
+        "rspack.config.js",
+        "tsconfig.json",
+        "package.json",
+        "**/tailwind.config.*",
+        "**/postcss.config.*"
+      ]
     },
     "dev": {
       "dependsOn": ["^build"],
